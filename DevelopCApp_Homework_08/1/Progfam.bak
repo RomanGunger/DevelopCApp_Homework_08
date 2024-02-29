@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.IO;
 
@@ -10,13 +10,11 @@ class Programm
         var path1 = "/Users/romangunger/Projects/DevelopCApp_Homework_08/DevelopCApp_Homework_08/Program.bak";
         var path2 = "/Users/romangunger/Projects/DevelopCApp_Homework_08/DevelopCApp_Homework_08";
 
-        //CopyFile(path, path1);
+        CopyFile(path, path1);
         //File.Copy(path, path1);
         //SearchAFile(new DirectoryInfo(path2), "Program.cs");
         //SearchAString(path, "Main");
         //ReadAndRewrite(path1);
-
-        LookForFilesWithExtentionAndText(new DirectoryInfo(path2), new string[] {".cs",".bak" }, "CopyFile");
     }
 
     static public void CopyFile(string path, string path1)
@@ -88,33 +86,5 @@ class Programm
         }
     }
 
-    static void LookForFilesWithExtentionAndText(DirectoryInfo dir, string[] extentions, string lookingFor)
-    {
-        foreach (var f in dir.EnumerateFiles())
-        {
-            foreach (var ex in extentions)
-            {
-                if (f.Extension == ex)
-                {
-                    using (var sr = new StreamReader(f.OpenRead()))
-                    {
-                        while (sr.Peek() >= 0)
-                        {
-                            string line = sr.ReadLine();
-                            if (line.Contains(lookingFor))
-                            {
-                                Console.WriteLine(f.Name);
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        foreach(var d in dir.EnumerateDirectories())
-        {
-            LookForFilesWithExtentionAndText(d, extentions, lookingFor);
-        }
-    }
 }
+23321
